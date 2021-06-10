@@ -1,6 +1,7 @@
 package de.fiducia.simple.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -18,7 +19,7 @@ public class Demo {
 
     public Demo(final Translator translator) {
         this.translator = translator;
-        System.out.println(translator.translate("Ctor Demo"));
+        System.out.println(this.translator.translate("Ctor Demo"));
     }
 
 
