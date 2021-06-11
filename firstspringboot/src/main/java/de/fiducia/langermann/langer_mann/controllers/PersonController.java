@@ -1,6 +1,7 @@
 package de.fiducia.langermann.langer_mann.controllers;
 
 
+import de.fiducia.langermann.langer_mann.controllers.dtos.PersonDTO;
 import de.fiducia.langermann.langer_mann.controllers.mapper.PersonDTOMapper;
 import de.fiducia.langermann.langer_mann.services.PersonService;
 import de.fiducia.langermann.langer_mann.services.PersonenServiceException;

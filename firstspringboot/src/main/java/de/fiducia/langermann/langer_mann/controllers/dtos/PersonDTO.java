@@ -1,4 +1,4 @@
-package de.fiducia.langermann.langer_mann.controllers;
+package de.fiducia.langermann.langer_mann.controllers.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
