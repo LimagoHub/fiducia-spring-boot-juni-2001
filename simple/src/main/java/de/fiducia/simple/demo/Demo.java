@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@Component // Controller, RestController, Service, Repository
+@Named// Controller, RestController, Service, Repository
 //@Scope("prototype") // Eine Instanz bei Bedarf jedesmal neu und merkt sich die Referenz NICHT (nicht unter Verwaltung von Spring)
 //@Scope("singleton") // Eine Instanz und merkt sich die Referenz (Default)
 //@Lazy // ist nur zusammen mit singleton sinnvoll
@@ -19,7 +21,7 @@ public class Demo {
 
     private final Translator translator; // Depenency wird in den Ctor injected
 
-    @Autowired
+    @Inject
     public Demo(final Translator translator, @Value("${demo.message}") final String message) {
         this.translator = translator;
         this.message = message;

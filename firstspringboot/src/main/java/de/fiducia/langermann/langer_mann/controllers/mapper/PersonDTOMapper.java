@@ -1,4 +1,4 @@
-package de.fiducia.langermann.langer_mann.repositories.mapper;
+package de.fiducia.langermann.langer_mann.controllers.mapper;
 
 import de.fiducia.langermann.langer_mann.controllers.PersonDTO;
 import de.fiducia.langermann.langer_mann.repositories.entities.PersonEntity;
@@ -11,5 +11,5 @@ import java.util.List;
 public interface PersonDTOMapper {
     Person convert(PersonDTO dto);
     PersonDTO convert(Person person);
-    List<Person> convert(List<PersonEntity> personEntities);
+    List<PersonDTO> convert(List<Person> personen);
 }
