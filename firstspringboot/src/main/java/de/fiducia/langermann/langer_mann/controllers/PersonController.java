@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -70,18 +71,16 @@ public class PersonController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponse(responseCode = "200", description = "Person wurde geändert")
     @ApiResponse(responseCode = "201", description = "Person wurde gespeicher")
-    public ResponseEntity<Void> saveOrUpdate(@RequestBody  PersonDTO dto) {
-
-
+    public ResponseEntity<Void> saveOrUpdate(@Valid @RequestBody  PersonDTO dto) {
         System.out.println("DTO: " + dto + " wurde gespeichert");
         return  ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // Ersatz
-    @PostMapping(value = "/to-upper",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/to-lower",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonDTO> toUpper(@RequestBody PersonDTO person) {
-        person.setNachname(person.getNachname().toUpperCase());
-        person.setVorname(person.getVorname().toUpperCase());
+        person.setNachname(person.getNachname().toLowerCase());
+        person.setVorname(person.getVorname().toLowerCase());
         return ResponseEntity.ok(person);
     }
 

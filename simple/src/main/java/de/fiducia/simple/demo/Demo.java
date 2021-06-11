@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+@Component // Controller, RestController, Service, Repository
 //@Scope("prototype") // Eine Instanz bei Bedarf jedesmal neu und merkt sich die Referenz NICHT (nicht unter Verwaltung von Spring)
 //@Scope("singleton") // Eine Instanz und merkt sich die Referenz (Default)
 //@Lazy // ist nur zusammen mit singleton sinnvoll
