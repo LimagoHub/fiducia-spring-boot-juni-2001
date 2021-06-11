@@ -82,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
             }
             return false;
         } catch (RuntimeException e) {
-            throw new PersonenServiceException(e);
+            throw new PersonenServiceException("",e);
         }
     }
 

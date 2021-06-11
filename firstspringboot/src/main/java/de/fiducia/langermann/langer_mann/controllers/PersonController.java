@@ -80,7 +80,7 @@ public class PersonController {
         return  ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    // Ersatz
+    // Ersatzget
     @PostMapping(value = "/to-lower",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonDTO> toUpper(@RequestBody PersonDTO person) {
         person.setNachname(person.getNachname().toLowerCase());
