@@ -145,7 +145,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src-gen/main</source>
+                                <source>target/generated-sources/annotations</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -157,7 +157,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src-gen/test</source>
+                                <source>target/generated-test-sources/test-annotations</source>
                             </sources>
                         </configuration>
                     </execution>
