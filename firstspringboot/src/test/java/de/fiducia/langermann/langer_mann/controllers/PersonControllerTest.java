@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
@@ -44,7 +47,7 @@ class PersonControllerTest {
         // Arrange
         Person validPerson = Person.builder().id("123").vorname("john").nachname("doe").build();
         Optional<Person> optional = Optional.of(validPerson);
-        when(personServiceMock.findePersonMitId(Mockito.anyString())).thenReturn(optional);
+        when(personServiceMock.findePersonMitId(anyString())).thenReturn(optional);
 
         // Act
         PersonDTO dto = restTemplate.getForObject("/v1/persons/b2e24e74-8686-43ea-baff-d9396b4202e0", PersonDTO.class);
@@ -62,7 +65,7 @@ class PersonControllerTest {
 
         // Arrange
         Optional<Person> optional = Optional.empty();
-        when(personServiceMock.findePersonMitId(Mockito.anyString())).thenReturn(optional);
+        when(personServiceMock.findePersonMitId(anyString())).thenReturn(optional);
 
         // Act
         ResponseEntity<PersonDTO> entity = restTemplate.getForEntity("/v1/persons/b2e24e74-8686-43ea-baff-d9396b4202e0", PersonDTO.class);
@@ -78,7 +81,7 @@ class PersonControllerTest {
     void test3() throws Exception{
 
 
-        when(personServiceMock.findePersonMitId(Mockito.anyString())).thenThrow(new PersonenServiceException("Upps"));
+        when(personServiceMock.findePersonMitId(anyString())).thenThrow(new PersonenServiceException("Upps"));
         //ResponseEntity<Map<String,Object>>  entity = restTemplate.getForEntity("/v1/persons/b2e24e74-8686-43ea-baff-d9396b4202e0", Map<String, Object>.class);
         ResponseEntity<Map<String,Object>>  entity =
                 restTemplate.exchange("/v1/persons/b2e24e74-8686-43ea-baff-d9396b4202e0", HttpMethod.GET, null,new ParameterizedTypeReference<Map<String, Object>>() {});
@@ -88,6 +91,25 @@ class PersonControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST, entity.getStatusCode());
         //String string = restTemplate.getForObject("/v1/persons/b2e24e74-8686-43ea-baff-d9396b4202e0", String.class);
         //System.out.println(string);
+    }
+    @Test
+        //@Sql({"/create.sql", "/insert.sql"})
+    void test4() throws Exception{
+
+        var toUpload = PersonDTO.builder().id("2707b527-46ef-4dfc-8e03-09f866cad8ea").vorname("John").nachname("Doe").build();
+        var passedToService = Person.builder().id("2707b527-46ef-4dfc-8e03-09f866cad8ea").vorname("John").nachname("Doe").build();
+        when(personServiceMock.speichern(any(Person.class))).thenReturn(false);
+
+        HttpEntity<PersonDTO> httpEntity = new HttpEntity<>(toUpload);
+
+        ResponseEntity<Void>  entity =
+                restTemplate.exchange("/v1/persons", HttpMethod.PUT, httpEntity,Void.class);
+
+
+
+        assertEquals(HttpStatus.CREATED, entity.getStatusCode());
+        verify(personServiceMock, times(1)).speichern(passedToService);
+
     }
 
 }
