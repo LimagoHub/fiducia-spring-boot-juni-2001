@@ -100,7 +100,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     @Override
-    public Optional<Person> findePersonMitId(String id) {
+    public Optional<Person> findePersonMitId(String id) throws PersonenServiceException {
         return repo.findById(id).map(mapper::convert);
     }
 }

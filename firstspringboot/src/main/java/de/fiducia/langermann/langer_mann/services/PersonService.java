@@ -13,6 +13,6 @@ public interface PersonService {
     List<Person> findeAlle() throws PersonenServiceException;
     List<Person> findenachVorname(String vorname) throws PersonenServiceException;
 
-    Optional<Person> findePersonMitId(String id);
+    Optional<Person> findePersonMitId(String id) throws PersonenServiceException;
 
 }

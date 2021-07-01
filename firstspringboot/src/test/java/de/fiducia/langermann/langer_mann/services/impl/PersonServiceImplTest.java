@@ -5,6 +5,7 @@ import de.fiducia.langermann.langer_mann.repositories.entities.PersonEntity;
 import de.fiducia.langermann.langer_mann.services.PersonenServiceException;
 import de.fiducia.langermann.langer_mann.services.mapper.PersonMapper;
 import de.fiducia.langermann.langer_mann.services.models.Person;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,6 +31,8 @@ class PersonServiceImplTest {
 
     @Mock
     private List<String> antipathenMock;
+
+
 
     @Test
     void speichern_parameterIsNull_throwsPersonenerviceException (){
