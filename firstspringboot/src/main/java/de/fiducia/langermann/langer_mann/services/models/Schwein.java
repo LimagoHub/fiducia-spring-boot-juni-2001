@@ -3,6 +3,8 @@ package de.fiducia.langermann.langer_mann.services.models;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 public class Schwein {
@@ -15,4 +17,7 @@ public class Schwein {
     public void fressen(){
         gewicht ++;
     }
+
+    @Setter(AccessLevel.NONE)
+    private LocalDateTime version;
 }

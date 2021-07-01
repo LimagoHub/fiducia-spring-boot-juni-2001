@@ -1,6 +1,7 @@
 package de.fiducia.langermann.langer_mann.controllers.errorhandling;
 
 import de.fiducia.langermann.langer_mann.services.PersonenServiceException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
+@Slf4j
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -47,7 +49,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
         body.put("abc", "Exception");
-        // Loggen
+        log.error("upps",ex);
         return ResponseEntity.badRequest().body(body);
     }
     @ExceptionHandler(PersonenServiceException.class)
