@@ -6,16 +6,13 @@ import de.fiducia.langermann.langer_mann.services.PersonService;
 import de.fiducia.langermann.langer_mann.services.PersonenServiceException;
 import de.fiducia.langermann.langer_mann.services.mapper.PersonMapper;
 import de.fiducia.langermann.langer_mann.services.models.Person;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional(propagation = Propagation.REQUIRED, rollbackFor = PersonenServiceException.class)
+
 public class PersonServiceImpl implements PersonService {
 
 
@@ -98,7 +95,7 @@ public class PersonServiceImpl implements PersonService {
         return mapper.convert(repo.findByVorname(vorname));
     }
 
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
+
     @Override
     public Optional<Person> findePersonMitId(String id) throws PersonenServiceException {
         return repo.findById(id).map(mapper::convert);

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 
-public class Person {
+public class Person { // Aggregat
 
     @Setter(AccessLevel.NONE)
     private String id;

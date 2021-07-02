@@ -1,7 +1,8 @@
-package de.fiducia.langermann.langer_mann.services.impl;
+package de.fiducia.langermann.langer_mann.application;
 
 import de.fiducia.langermann.langer_mann.repositories.PersonRepository;
 import de.fiducia.langermann.langer_mann.services.PersonService;
+import de.fiducia.langermann.langer_mann.services.impl.PersonServiceImpl;
 import de.fiducia.langermann.langer_mann.services.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
