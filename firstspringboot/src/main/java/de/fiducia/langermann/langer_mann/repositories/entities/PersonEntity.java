@@ -19,6 +19,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tblpersonen")
+@NamedQuery(name = "PersonEntity.findeAlle",query = "select p from PersonEntity p")
+@NamedQuery(name = "PersonEntity.nachnamen",query = "select p.nachname from PersonEntity p")
 public class PersonEntity {
 
     @Id
