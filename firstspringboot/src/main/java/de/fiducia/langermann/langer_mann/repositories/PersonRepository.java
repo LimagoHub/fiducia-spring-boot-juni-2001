@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface PersonRepository extends CrudRepository<PersonEntity, String> {
+public interface PersonRepository extends CrudRepository<PersonEntity, String> , PersonCustomRepository{
 
     public List<PersonEntity> findByVorname(String vorname);
     public List<PersonEntity> findByNachname(String nachname);
@@ -18,5 +18,8 @@ public interface PersonRepository extends CrudRepository<PersonEntity, String> {
 
     @Query("select new de.fiducia.langermann.langer_mann.repositories.entities.TinyPerson(p.id, p.nachname) from PersonEntity p where p.vorname=:vorname")
     public List<TinyPerson> tinies(String vorname);
+
+    @Query("update PersonEntity p set p.vorname=:vorname where p.id=:id")
+    public void updateVorname(String id, String vorname);
 
 }
